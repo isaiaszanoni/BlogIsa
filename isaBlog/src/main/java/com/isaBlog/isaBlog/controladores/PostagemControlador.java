@@ -27,7 +27,6 @@ public class PostagemControlador {
 	
 	private @Autowired PostagemRepositorio repositorio;
 	
-	
 	@GetMapping("/todas")
 	public List<Postagem> PegaTodes(){
 		return repositorio.findAll();
