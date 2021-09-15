@@ -1,11 +1,16 @@
 package com.personalblog.blogisa.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -14,24 +19,29 @@ public class Tema {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCategoria;
+	private Long idTema;
 	
 	@NotNull 
-	private String nomeCategoria;
+	private String nomeTema;
+	
+	@OneToMany(mappedBy = "temaRelacionado", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("temaRelacionado")
+	private List<Postagem> postagem;
 
-	public Long getIdCategoria() {
-		return idCategoria;
+	public Long getIdTema() {
+		return idTema;
 	}
 
-	public void setIdCategoria(Long idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setIdTema(Long idTema) {
+		this.idTema = idTema;
 	}
 
-	public String getNomeCategoria() {
-		return nomeCategoria;
+	public String getNomeTema() {
+		return nomeTema;
 	}
 
-	public void setNomeCategoria(String nomeCategoria) {
-		this.nomeCategoria = nomeCategoria;
+	public void setNomeTema(String nomeTema) {
+		this.nomeTema = nomeTema;
 	}
+
 }

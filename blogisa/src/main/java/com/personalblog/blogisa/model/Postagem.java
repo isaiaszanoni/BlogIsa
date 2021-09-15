@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -24,6 +27,17 @@ public class Postagem {
 	
 	@NotNull
 	private String textoPostagem;
+	
+	@ManyToOne
+	@JoinColumn(name = "criador_id")
+	@JsonIgnoreProperties({"minhasPostagens"})
+	private Usuario criador;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema temaRelacionado;
+	
+	// Getters and Setters
 
 	public Long getIdPostagem() {
 		return idPostagem;
@@ -57,4 +71,20 @@ public class Postagem {
 		this.textoPostagem = textoPostagem;
 	}
 
+	public Tema getTemaRelacionado() {
+		return temaRelacionado;
+	}
+
+	public void setTemaRelacionado(Tema temaRelacionado) {
+		this.temaRelacionado = temaRelacionado;
+	}
+
+	public Usuario getCriador() {
+		return criador;
+	}
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
+	}
+	
 }
