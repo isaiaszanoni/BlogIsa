@@ -80,5 +80,7 @@ public class Usuario {
 	public void setMinhasPostagens(List<Postagem> minhasPostagens) {
 		this.minhasPostagens = minhasPostagens;
 	}
+	
+	
 
 }
